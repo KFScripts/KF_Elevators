@@ -97,22 +97,21 @@ end
 
 RegisterNUICallback('close', function(data, cb)
     SetNuiFocus(false, false)
+    cb('ok')
     SendNUIMessage({
         type = "close"
     })
-    cb('ok')
 end)
 
 RegisterNUICallback('selectFloor', function(data, cb)
+    cb('ok')
     SetNuiFocus(false, false)
     SendNUIMessage({
         type = "close"
     })
-    --make a screen fade out
     DoScreenFadeOut(200)
     TriggerServerEvent('KF_Elevators:selectFloor', data.floor, data.building)
     Citizen.Wait(300)
     DoScreenFadeIn(200)
     ClearPedTasksImmediately(PlayerPedId())
-    cb('ok')
 end)
